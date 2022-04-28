@@ -1,10 +1,17 @@
 import styles from './Header.module.scss'
-import Image from 'next/image'
+import Logo from '@components/layout/Logo/Logo'
+import Nav from '@components/layout/Nav/Nav'
+import Link from 'next/link'
 
 function Header() {
 	return (
 		<header className={styles.header}>
-			<Image src="/logo.svg" width={25} height={25} />
+			<Link href="/">
+				<a className={styles.logoLink} aria-label="Go to home">
+					<Logo />
+				</a>
+			</Link>
+			<Nav />
 		</header>
 	)
 }

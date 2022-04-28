@@ -7,9 +7,10 @@ const Home: NextPage = () => {
 			<Head>
 				<title>The Habit Guide</title>
 				<meta name="description" content="Ideas, hacks and habits" />
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="/favicon.ico" sizes="any" />
+				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 			</Head>
-			<h1>Hello World</h1>
+			<h1 className="headline1">Hello World</h1>
 		</>
 	)
 }

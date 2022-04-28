@@ -1,3 +1,21 @@
-// Core
-@import 'core/normalize';
-@import 'core/reset';
+// Abstracts
+@import 'abstracts/breakpoints';
+@import 'abstracts/colors';
+@import 'abstracts/variables';
+
+// Base
+@import 'base/normalize';
+@import 'base/reset';
+@import 'base/layout';
+@import 'base/typography';
+
+// Z-INDEX MAP
+// 000–199: Elements and Components
+// 200–299: Element and Component Drop Downs
+// 300–399: Secondary Navigation
+// 400–499: Header / Footer
+// 500–599: Primary Navigation
+// 600–699: Full Screen Features
+// 700–799: Special Cases
+// 800–899: Modals / Dialog Windows
+// 900–999: Notifications
