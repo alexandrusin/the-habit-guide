@@ -15,6 +15,11 @@ function Nav() {
 						<a className="button">Typography</a>
 					</Link>
 				</li>
+				<li>
+					<Link href="/habits">
+						<a className="button">Habits</a>
+					</Link>
+				</li>
 			</ul>
 		</nav>
 	)
