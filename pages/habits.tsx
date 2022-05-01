@@ -1,12 +1,15 @@
+import { useRouter } from 'next/router'
 import { GetServerSideProps, GetStaticProps } from 'next'
+import axios from 'axios'
 
-import HabitCard from '@components/HabitCard'
+import HabitCard from 'components/HabitCard'
 
 interface Habit {
 	id: number
 	attributes: {
 		name: string
 		description: string
+		difficulty: string
 		createdAt: any
 		updatedAt: any
 		publishedAt: any
@@ -18,17 +21,12 @@ interface HabitJsonResponse {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/habits`,
-		{
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		}
-	).then((response) => response.json())
+	const response = await axios.get(
+		`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/habits`
+	)
 
-	const data: Habit[] = response.data
+	// NOTE: can we do something about the double data situation here?
+	const data: Habit[] = await response.data.data
 
 	if (!data) {
 		return {
@@ -44,8 +42,17 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const Habits = ({ data }: HabitJsonResponse) => {
+	const router = useRouter()
+	const toHabitView = (id: number) => router.push(`/habits/${id}`)
+
 	const habits = data.map((habit) => (
-		<HabitCard name={habit.attributes.name} key={habit.id} />
+		<HabitCard
+			name={habit.attributes.name}
+			description={habit.attributes.description}
+			difficulty={habit.attributes.difficulty}
+			key={habit.id}
+			onClick={() => toHabitView(habit.id)}
+		/>
 	))
 
 	return (

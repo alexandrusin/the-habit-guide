@@ -1,6 +1,6 @@
-import '../styles/style.scss'
+import 'styles/style.scss'
 import type { AppProps } from 'next/app'
-import { Header, Main, Footer } from '@components/layout'
+import { Header, Main, Footer } from 'components/layout'
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (

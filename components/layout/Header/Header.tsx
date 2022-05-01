@@ -1,6 +1,6 @@
 import styles from './Header.module.scss'
-import Logo from '@components/layout/Logo/Logo'
-import Nav from '@components/layout/Nav/Nav'
+import Logo from 'components/layout/Logo/Logo'
+import Nav from 'components/layout/Nav/Nav'
 import Link from 'next/link'
 
 function Header() {
