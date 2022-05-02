@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import axios from 'axios'
-
-import HabitCard from 'components/HabitCard'
+import Card from 'components/Card/Card'
 
 interface Habit {
 	id: number
@@ -46,13 +45,11 @@ const Habits = ({ data }: HabitJsonResponse) => {
 	const toHabitView = (id: number) => router.push(`/habits/${id}`)
 
 	const habits = data.map((habit) => (
-		<HabitCard
-			name={habit.attributes.name}
-			description={habit.attributes.description}
-			difficulty={habit.attributes.difficulty}
-			key={habit.id}
-			onClick={() => toHabitView(habit.id)}
-		/>
+		<Card onClick={() => toHabitView(habit.id)} key={habit.id}>
+			{habit.attributes.name} <br />
+			{habit.attributes.difficulty} <br />
+			{habit.attributes.description}
+		</Card>
 	))
 
 	return (
