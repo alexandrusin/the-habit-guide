@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { GetServerSideProps, GetStaticProps } from 'next'
 
 const Home: NextPage = () => {
 	return (

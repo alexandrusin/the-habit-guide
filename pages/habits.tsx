@@ -1,63 +1,45 @@
-import { useRouter } from 'next/router'
+import HabitCard from 'components/HabitCard/HabitCard'
 import { GetServerSideProps, GetStaticProps } from 'next'
-import axios from 'axios'
-import Card from 'components/Card/Card'
+import Link from 'next/link'
+import router from 'next/router'
+import { Habit, Category } from 'typings'
+import fetchHabits from 'utils/fetchHabits'
+import fetchCategories from 'utils/fetchCategories'
 
-interface Habit {
-	id: number
-	attributes: {
-		name: string
-		description: string
-		difficulty: string
-		createdAt: any
-		updatedAt: any
-		publishedAt: any
-	}
+interface Props {
+	habits: Habit[]
+	categories: Category[]
 }
 
-interface HabitJsonResponse {
-	data: Habit[]
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-	const response = await axios.get(
-		`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/habits`
-	)
-
-	// NOTE: can we do something about the double data situation here?
-	const data: Habit[] = await response.data.data
-
-	if (!data) {
-		return {
-			notFound: true,
-		}
-	}
-
-	return {
-		props: {
-			data,
-		},
-	}
-}
-
-const Habits = ({ data }: HabitJsonResponse) => {
-	const router = useRouter()
-	const toHabitView = (id: number) => router.push(`/habits/${id}`)
-
-	const habits = data.map((habit) => (
-		<Card onClick={() => toHabitView(habit.id)} key={habit.id}>
-			{habit.attributes.name} <br />
-			{habit.attributes.difficulty} <br />
-			{habit.attributes.description}
-		</Card>
-	))
+function Habits({ habits, categories }: Props) {
+	console.log('habits from habits ->', habits)
+	console.log('categories from habits ->', categories)
 
 	return (
 		<>
-			{habits}
-			<pre>{JSON.stringify(data, null, 2)}</pre>
+			<div>Habits</div>
+
+			{habits.map((habit) => (
+				<HabitCard habit={habit} key={habit._id} />
+			))}
+
+			{categories.map((category) => (
+				<span key={category._id}>{category.title}</span>
+			))}
 		</>
 	)
 }
 
 export default Habits
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const habits = await fetchHabits()
+	const categories = await fetchCategories()
+
+	return {
+		props: {
+			habits,
+			categories,
+		},
+	}
+}

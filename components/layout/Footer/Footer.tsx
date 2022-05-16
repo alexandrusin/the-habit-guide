@@ -4,7 +4,7 @@ function Footer() {
 	const curretYear = new Date().getFullYear()
 	return (
 		<footer className={styles.footer}>
-			Copyright &copy; {curretYear} The Habit Guide
+			Copyright &copy; {curretYear} from Footer
 		</footer>
 	)
 }

@@ -9,10 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^0.27.2",
+    "@sanity/client": "^3.3.0",
+    "@sanity/image-url": "^1.0.1",
     "next": "12.1.5",
+    "next-sanity": "^0.5.2",
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "react-portable-text": "^0.4.3",
+    "react-query": "^3.38.1"
   },
   "devDependencies": {
     "@types/node": "17.0.25",

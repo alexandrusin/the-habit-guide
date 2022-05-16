@@ -1,0 +1,15 @@
+.card {
+	padding: 0 var(--space-md);
+	border-radius: var(--radius-sm);
+	margin: var(--space-lg) 0;
+}
+
+.link {
+	text-decoration: unset;
+	&:hover {
+		text-decoration: unset;
+		.title {
+			text-decoration: underline;
+		}
+	}
+}
