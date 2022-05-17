@@ -6,8 +6,7 @@ import { Habit } from 'typings'
 const query = `*[_type == "habit"] {
     _id,
     ...,
-
-    "categories": categories[]->{title},
+    "tags": tags[]->{title,slug { current }},
   }`
 
 //   "cat": *[ _type == "category" ] {

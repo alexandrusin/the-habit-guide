@@ -70,7 +70,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		slug,
 		description,
 		icon,
-		categories,
+		tags,
 		body
 	  }`
 	// Call Sanity API endpoint to get the habits.

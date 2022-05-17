@@ -2,18 +2,18 @@ import HabitCard from 'components/HabitCard/HabitCard'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import Link from 'next/link'
 import router from 'next/router'
-import { Habit, Category } from 'typings'
+import { Habit, Tag } from 'typings'
 import fetchHabits from 'utils/fetchHabits'
-import fetchCategories from 'utils/fetchCategories'
+import fetchTags from 'utils/fetchTags'
 
 interface Props {
 	habits: Habit[]
-	categories: Category[]
+	tags: Tag[]
 }
 
-function Habits({ habits, categories }: Props) {
+function Habits({ habits, tags }: Props) {
 	console.log('habits from habits ->', habits)
-	console.log('categories from habits ->', categories)
+	console.log('tags from habits ->', tags)
 
 	return (
 		<>
@@ -23,8 +23,8 @@ function Habits({ habits, categories }: Props) {
 				<HabitCard habit={habit} key={habit._id} />
 			))}
 
-			{categories.map((category) => (
-				<span key={category._id}>{category.title}</span>
+			{tags.map((tag) => (
+				<span key={tag._id}>{tag.title}</span>
 			))}
 		</>
 	)
@@ -34,12 +34,12 @@ export default Habits
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const habits = await fetchHabits()
-	const categories = await fetchCategories()
+	const tags = await fetchTags()
 
 	return {
 		props: {
 			habits,
-			categories,
+			tags,
 		},
 	}
 }

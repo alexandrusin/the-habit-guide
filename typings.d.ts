@@ -14,15 +14,17 @@ export type HabitPreview = {
 	}
 	description: string
 	difficulty: string
-	categories: Category[]
-	cat: Array
+	tags: Tag[]
 }
 
-export interface Category {
+export interface Tag {
 	_id: string
 	_rev: string
 	_type: string
 	title: string
+	slug: {
+		current: string
+	}
 	description: string
 	habit: {
 		_ref: string
